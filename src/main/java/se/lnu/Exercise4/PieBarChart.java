@@ -1,4 +1,4 @@
-package ne222hz_assign3.Exercise4;
+package se.lnu.Exercise4;
 
 import java.io.IOException;
 
@@ -10,7 +10,7 @@ import org.knowm.xchart.demo.charts.ExampleChart;
 public class PieBarChart {
 
 	public static void main(String[] args) {
-		String path = "C:\\Users\\noori\\Downloads\\integers\\integers.dat";
+		String path = "integers.dat";
 		try {
 			Integer[] dt = MyDataChart.reading(path);
 
@@ -18,15 +18,14 @@ public class PieBarChart {
 
 			exampleChart = new MyBarChart(dt);
 			CategoryChart chart = exampleChart.getChart();
-			new SwingWrapper<CategoryChart>(chart).displayChart();
+            new SwingWrapper<>(chart).displayChart();
 
 			ExampleChart<PieChart> exampleChart2 = new MyPieChart(dt);
 			PieChart chart2 = exampleChart2.getChart();
-			new SwingWrapper<PieChart>(chart2).displayChart();
+            new SwingWrapper<>(chart2).displayChart();
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+            System.out.println("Error creating file: " + e.getMessage());
 		}
 
 	}

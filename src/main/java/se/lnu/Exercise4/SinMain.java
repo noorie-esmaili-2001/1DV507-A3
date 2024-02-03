@@ -1,4 +1,4 @@
-package ne222hz_assign3.Exercise4;
+package se.lnu.Exercise4;
 
 import java.util.ArrayList;
 
@@ -19,17 +19,16 @@ public class SinMain {
 		chart.getStyler().setMarkerSize(2);
 
 		// Generate data
-//		List xData = new ArrayList();
 		ArrayList<Double> xData = new ArrayList<>();
 		ArrayList<Double> yData = new ArrayList<>();
 		double size = 2 * Math.PI;
-		for (Double i = 0.0; i <= size; i = i + 0.0001) {
+		for (double i = 0.0; i <= size; i = i + 0.0001) {
 			xData.add(i);
 			yData.add((1 + i / Math.PI) * Math.cos(i) * Math.cos(40 * i));
 		}
 
 		// Display scatter plot
-		chart.addSeries("Plotting the curve", yData);
+		chart.addSeries("Plotting the curve", xData, yData);
 		new SwingWrapper<>(chart).displayChart();
 	}
 
