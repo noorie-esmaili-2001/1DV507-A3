@@ -1,11 +1,9 @@
-package ne222hz_assign3.Exercise8;
+package se.lnu.Exercise8;
 
 import javafx.application.Application;
-import javafx.event.EventHandler;
 import javafx.scene.Scene;
 import javafx.scene.control.ColorPicker;
 import javafx.scene.control.ComboBox;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -48,60 +46,54 @@ public class TinyPainter extends Application {
 		s.getItems().addAll(1.0, 8.0, 9.0, 10.0, 11.0, 12.0, 14.0, 16.0, 18.0, 20.0);
 		s.setValue(1.0);
 
-		root.setOnMousePressed(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				a = event.getX();
-				b = event.getY();
-				if (shapesComboBox.getSelectionModel().getSelectedIndex() == 0) {
-					Double lwidth = s.getSelectionModel().getSelectedItem();
-					line = new Line();
-					line.setStrokeWidth(lwidth);
-					line.setStroke(colorPicker.getValue());
-					line.relocate(a, b);
-					root.getChildren().addAll(line);
-				}
-				if (shapesComboBox.getSelectionModel().getSelectedIndex() == 1) {
-					Double dotsize = s.getSelectionModel().getSelectedItem();
-					rectangle = new Rectangle(dotsize, dotsize);
-					rectangle.setStrokeWidth(dotsize);
-					rectangle.setFill(colorPicker.getValue());
-					rectangle.relocate(a, b);
-					root.getChildren().addAll(rectangle);
-				}
-				if (shapesComboBox.getSelectionModel().getSelectedIndex() == 2) {
-					rectangle = new Rectangle();
-					rectangle.setFill(colorPicker.getValue());
-					rectangle.relocate(a, b);
-					root.getChildren().addAll(rectangle);
-				}
-				if (shapesComboBox.getSelectionModel().getSelectedIndex() == 3) {
-					circle = new Circle();
-					circle.relocate(a, b);
-					circle.setFill(colorPicker.getValue());
-					root.getChildren().addAll(circle);
-				}
-			}
-		});
+		root.setOnMousePressed(event -> {
+            a = event.getX();
+            b = event.getY();
+            if (shapesComboBox.getSelectionModel().getSelectedIndex() == 0) {
+                Double lwidth = s.getSelectionModel().getSelectedItem();
+                line = new Line();
+                line.setStrokeWidth(lwidth);
+                line.setStroke(colorPicker.getValue());
+                line.relocate(a, b);
+                root.getChildren().addAll(line);
+            }
+            if (shapesComboBox.getSelectionModel().getSelectedIndex() == 1) {
+                Double dotSize = s.getSelectionModel().getSelectedItem();
+                rectangle = new Rectangle(dotSize, dotSize);
+                rectangle.setStrokeWidth(dotSize);
+                rectangle.setFill(colorPicker.getValue());
+                rectangle.relocate(a, b);
+                root.getChildren().addAll(rectangle);
+            }
+            if (shapesComboBox.getSelectionModel().getSelectedIndex() == 2) {
+                rectangle = new Rectangle();
+                rectangle.setFill(colorPicker.getValue());
+                rectangle.relocate(a, b);
+                root.getChildren().addAll(rectangle);
+            }
+            if (shapesComboBox.getSelectionModel().getSelectedIndex() == 3) {
+                circle = new Circle();
+                circle.relocate(a, b);
+                circle.setFill(colorPicker.getValue());
+                root.getChildren().addAll(circle);
+            }
+        });
 
-		root.setOnMouseDragged(new EventHandler<MouseEvent>() {
-			@Override
-			public void handle(MouseEvent event) {
-				if (shapesComboBox.getSelectionModel().getSelectedIndex() == 0) {
-					line.setEndX(event.getX() - a);
-					line.setEndY(event.getY() - b);
-				} else {
-					if (shapesComboBox.getSelectionModel().getSelectedIndex() == 2) {
-						rectangle.setHeight(event.getX() - a);
-						rectangle.setWidth(event.getY() - b);
-					} else {
-						if (shapesComboBox.getSelectionModel().getSelectedIndex() == 3) {
-							circle.setRadius(event.getX() - a);
-						}
-					}
-				}
-			}
-		});
+		root.setOnMouseDragged(event -> {
+            if (shapesComboBox.getSelectionModel().getSelectedIndex() == 0) {
+                line.setEndX(event.getX() - a);
+                line.setEndY(event.getY() - b);
+            } else {
+                if (shapesComboBox.getSelectionModel().getSelectedIndex() == 2) {
+                    rectangle.setHeight(event.getX() - a);
+                    rectangle.setWidth(event.getY() - b);
+                } else {
+                    if (shapesComboBox.getSelectionModel().getSelectedIndex() == 3) {
+                        circle.setRadius(event.getX() - a);
+                    }
+                }
+            }
+        });
 		root.getChildren().addAll(shapesComboBox, s, colorPicker);
 
 		scene.setFill(Color.WHITE);
